@@ -1,0 +1,1 @@
+Publish/Subscribe is all about loose coupling and single responsibility, which goes hand to hand with MV* (MVC/MVP/MVVM) patterns in JavaScript 

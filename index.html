@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Publish Subscribe Pattern</title>
+    <meta name="author" content="MOGAN KUMAR PC">
+    <meta name="description" content="Publish_Subscribe_Pattern">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <section>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header wid100Per align-center">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand wid100Per align-center" href="#">Publish_Subscribe_Pattern</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <p class="btn btn-primary wid100Per align-center"> Two Different Instances with two different events </p>
+            <div class="row row-wrapper">
+                <h1 class="align-center">Instance 1</h2>
+            <div class="col-wrapper col-md-5">
+        <h1 class="align-center vertical-center">Event: Rainy</h2>
+            
+            </div>
+            <div class="col-md-2 col-spacer">
+                <button class="btn btn-danger mar-top-70 mar-ver-20" onclick = "clickOff(1)">Unsubscribe / Off</button>
+                <button class="btn btn-success mar-ver-20" onclick = "clickOn(1)">Subscribe / On</button>
+                <button class="btn btn-primary mar-ver-20" onclick = "clickEmit(1)">Publish / emit</button>
+            </div>
+            <div class="col-wrapper col-md-5">
+            <code id = "printable-area-1">
+            <p>&nbsp;</p>
+            </code>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div class="row row-wrapper"> -->
+            <div class="col-wrapper col-md-5">
+        <h1 class="align-center vertical-center">Event: Foggy</h2>
+
+            </div>
+            <div class="col-md-2 col-spacer">
+                <button class="btn btn-danger mar-top-70 mar-ver-20" onclick = "clickOff(2)">Unsubscribe / Off</button>
+                <button class="btn btn-success mar-ver-20" onclick = "clickOn(2)">Subscribe / On</button>
+                <button class="btn btn-primary mar-ver-20" onclick = "clickEmit(2)">Publish / emit</button>
+
+            </div>
+            <div class="col-wrapper col-md-5">
+            <code id = "printable-area-2">
+            <p>&nbsp;</p>
+            </code>
+            </div>
+        </div>
+
+        <div class="row row-wrapper">
+        <h1 class="align-center">Instance 2</h2>
+
+            <div class="col-wrapper col-md-5">
+        <h1 class="align-center vertical-center">Event: Rainy</h2>
+
+            </div>
+            <div class="col-md-2 col-spacer">
+                <button class="btn btn-danger mar-top-70 mar-ver-20" onclick = "clickOff(3)">Unsubscribe / Off</button>
+                <button class="btn btn-success mar-ver-20" onclick = "clickOn(3)">Subscribe / On</button>
+                <button class="btn btn-primary mar-ver-20" onclick = "clickEmit(3)">Publish / emit</button>
+
+            </div>
+            <div class="col-wrapper col-md-5">
+            <code id = "printable-area-3">
+            <p>&nbsp;</p>
+            </code>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div class="row row-wrapper"> -->
+            <div class="col-wrapper col-md-5">
+        <h1 class="align-center vertical-center">Event: Foggy</h2>
+
+            </div>
+            <div class="col-md-2 col-spacer">
+                <button class="btn btn-danger mar-top-70 mar-ver-20" onclick = "clickOff(4)">Unsubscribe / Off</button>
+                <button class="btn btn-success mar-ver-20" onclick = "clickOn(4)">Subscribe / On</button>
+                <button class="btn btn-primary mar-ver-20" onclick = "clickEmit(4)">Publish / emit</button>
+
+            </div>
+            <div class="col-wrapper col-md-5">
+            <code id = "printable-area-4">
+            <p>&nbsp;</p>
+            </code>
+            </div>
+        </div>
+
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <a class="navbar-brand wid100Per align-center" href="javascript:void(0)">&copy; MOGAN KUMAR PC 2015</a>
+            </div>
+        </div>
+</section>
+
+
+</body>
+<script type="text/javascript" src = "js/publish_subscribe_pattern.min.js"></script>
+<script type="text/javascript" src="js/vendor/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/vendor/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+/***/
+
+
+
+var instance1 = new pubNsub();
+
+var instance2 = new pubNsub();
+
+/*instance1.on('rainy', function() {
+    console.log('launch event handled for ', this);
+});
+
+instance1.on('foggy', function() {
+    console.log('launch event handled for ', this);
+});
+
+instance2.on('rainy', function() {
+    console.log('launch event handled for ', this)
+});
+
+instance2.on('foggy', function() {
+    console.log('launch event handled for ', this)
+});
+
+
+instance1.emit('rainy', {
+    'info': 'I m Instance2 with Event "rainy"'
+});
+instance1.emit('foggy', {
+    'info': 'I m Instance2 with Event "foggy"'
+});
+instance2.emit('rainy', {
+    'info': 'I m Instance1 with Event "rainy"'
+});
+instance2.emit('foggy', {
+    'info': 'I m Instance1 with Event "foggy"'
+});*/
+
+
+/***/
+
+function clickOn(n){
+
+	switch(n){
+		case 1:
+		{
+			instance1.on('rainy', function() {
+			    console.log('launch event handled for ', this);
+			});
+			break;
+		}
+		case 2:
+		{
+			instance1.on('foggy', function() {
+			    console.log('launch event handled for ', this);
+			});
+			break;
+		}
+		case 3:
+		{
+			instance2.on('rainy', function() {
+			    console.log('launch event handled for ', this)
+			});
+			break;
+		}
+		case 4:
+		{
+			instance2.on('foggy', function() {
+			    console.log('launch event handled for ', this)
+			});
+			break;
+		}
+	}
+
+	document.getElementById('printable-area-'+n).innerHTML += errorMessage + '<hr/>';
+}
+
+function clickOff(n){
+	
+	switch(n){
+		case 1:
+		{
+			instance1.off('rainy', function() {
+			    console.log('launch event handled for ', this);
+			});
+			break;
+		}
+		case 2:
+		{
+			instance1.off('foggy', function() {
+			    console.log('launch event handled for ', this);
+			});
+			break;
+
+		}
+		case 3:
+		{
+			instance2.off('rainy', function() {
+			    console.log('launch event handled for ', this)
+			});
+			break;
+		}
+		case 4:
+		{
+			instance2.off('foggy', function() {
+			    console.log('launch event handled for ', this)
+			});
+			break;
+		}
+	}
+
+	document.getElementById('printable-area-'+n).innerHTML += errorMessage + '<hr/>';
+
+}
+
+function clickEmit(n){
+
+	switch(n){
+		case 1:
+		{
+			instance1.emit('rainy', {
+			    'info': 'I m Instance1 with Event "rainy"'
+			});
+			break;
+		}
+		case 2:
+		{
+			instance1.emit('foggy', {
+			    'info': 'I m Instance1 with Event "foggy"'
+			});
+			break;
+		}
+		case 3:
+		{
+			instance2.emit('rainy', {
+			    'info': 'I m Instance2 with Event "rainy"'
+			});
+			break;
+		}
+		case 4:
+		{
+			instance2.emit('foggy', {
+			    'info': 'I m Instance2 with Event "foggy"'
+			});
+			break;
+		}
+	}
+
+	document.getElementById('printable-area-'+n).innerHTML += errorMessage + '<hr/>';
+}
+
+</script>
+
+</html>
